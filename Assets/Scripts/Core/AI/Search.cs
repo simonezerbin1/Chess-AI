@@ -58,7 +58,7 @@
 			tt.enabled = settings.useTranspositionTable;
 
 			// Clearing the transposition table before each search seems to help
-			// This makes no sense to me, I presume there is a bug somewhere but haven't been able to track it down yet
+			
 			if (settings.clearTTEachMove) {
 				tt.Clear ();
 			}

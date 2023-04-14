@@ -71,9 +71,9 @@ namespace Chess.Game {
 				}*/
 			}
 
-			/*if (Input.GetKeyDown (KeyCode.E)) {
+			if (Input.GetKeyDown (KeyCode.E)) {
 				ExportGame ();
-			}*/
+			}
 
 		}
 
@@ -94,10 +94,10 @@ namespace Chess.Game {
 			NewGame ((humanPlaysWhite) ? PlayerType.Human : PlayerType.AI, (humanPlaysWhite) ? PlayerType.AI : PlayerType.Human);
 		}
 
-		public void NewComputerVersusComputerGame () {
+		/*public void NewComputerVersusComputerGame () {
 			boardUI.SetPerspective (true);
 			NewGame (PlayerType.AI, PlayerType.AI);
-		}
+		}*/
 
 		void NewGame (PlayerType whitePlayerType, PlayerType blackPlayerType) {
 			gameMoves.Clear ();
@@ -126,9 +126,8 @@ namespace Chess.Game {
 			string text = "";
 			var d = aiSettings.diagnostics;
 			//text += "AI Diagnostics";
-			text += $"<color=#{ColorUtility.ToHtmlStringRGB(colors[3])}>Version 1.0\n";
 			text += $"<color=#{ColorUtility.ToHtmlStringRGB(colors[0])}>Depth Searched: {d.lastCompletedDepth}";
-			//text += $"\nPositions evaluated: {d.numPositionsEvaluated}";
+			text += $"\nPositions evaluated: {d.numPositionsEvaluated}";
 
 			string evalString = "";
 			if (d.isBook) {
@@ -149,7 +148,7 @@ namespace Chess.Game {
 			aiDiagnosticsUI.text = text;
 		}
 
-		/*public void ExportGame () {
+		public void ExportGame () {
 			string pgn = PGNCreator.CreatePGN (gameMoves.ToArray ());
 			string baseUrl = "https://www.lichess.org/paste?pgn=";
 			string escapedPGN = UnityEngine.Networking.UnityWebRequest.EscapeURL (pgn);
@@ -160,7 +159,7 @@ namespace Chess.Game {
 			t.text = pgn;
 			t.SelectAll ();
 			t.Copy ();
-		}*/
+		}
 
 		public void QuitGame () {
 			Application.Quit ();
