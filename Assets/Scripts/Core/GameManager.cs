@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+using System.Text;
+using System.Threading.Tasks;
+using System;
+using System.IO;
+
 namespace Chess.Game {
 	public class GameManager : MonoBehaviour {
 
@@ -159,6 +164,10 @@ namespace Chess.Game {
 			t.text = pgn;
 			t.SelectAll ();
 			t.Copy ();
+			StreamWriter s=new StreamWriter(Directory.GetCurrentDirectory()+"/GamesPlayed/games.txt",true);
+			s.WriteLine("Game: ");
+			s.WriteLine(pgn);
+			s.Close();
 		}
 
 		public void QuitGame () {
