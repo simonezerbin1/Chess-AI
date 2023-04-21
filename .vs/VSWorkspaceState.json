@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Assets",
+    "\\Assets\\Graphics",
+    "\\Assets\\Graphics\\Materials",
+    "\\Assets\\Scripts",
+    "\\Assets\\Scripts\\Testing",
+    "\\Assets\\Scripts\\Testing\\Debug",
+    "\\Assets\\Scripts\\Testing\\Perft",
+    "\\Assets\\Scripts\\Testing\\Perft\\Editor",
+    "\\Packages"
+  ],
+  "SelectedNode": "\\Assets\\Graphics\\Materials\\Unlit.mat",
+  "PreviewInSolutionExplorer": false
+}
