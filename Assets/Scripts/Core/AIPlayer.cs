@@ -4,7 +4,7 @@
 
 	public class AIPlayer : Player {
 
-
+		const int bookMoveDelayMillis = 250;
 
 		Search search;
 		AISettings settings;
@@ -13,7 +13,7 @@
 		Board board;
 		CancellationTokenSource cancelSearchTimer;
 
-
+		Book book;
 
 		public AIPlayer (Board board, AISettings settings) {
 			this.settings = settings;
@@ -22,9 +22,11 @@
 			search = new Search (board, settings);
 			search.onSearchComplete += OnSearchComplete;
 			search.searchDiagnostics = new Search.SearchDiagnostics ();
-
+			book = BookCreator.LoadBookFromFile (settings.book);
 		}
 
+		// Update running on Unity main thread. This is used to return the chosen move so as
+		// not to end up on a different thread and unable to interface with Unity stuff.
 		public override void Update () {
 			if (moveFound) {
 				moveFound = false;
@@ -37,15 +39,30 @@
 
 		public override void NotifyTurnToMove () {
 
-			
+			search.searchDiagnostics.isBook = false;
+			moveFound = false;
 
-			
+			Move bookMove = Move.InvalidMove;
+			if (settings.useBook && board.plyCount <= settings.maxBookPly) {
+				if (book.HasPosition (board.ZobristKey)) {
+					bookMove = book.GetRandomBookMoveWeighted (board.ZobristKey);
+				}
+			}
+
+			if (bookMove.IsInvalid) {
 				if (settings.useThreading) {
 					StartThreadedSearch ();
 				} else {
 					StartSearch ();
 				}
+			} else {
 			
+				search.searchDiagnostics.isBook = true;
+				search.searchDiagnostics.moveVal = Chess.PGNCreator.NotationFromMove (FenUtility.CurrentFen(board), bookMove);
+				settings.diagnostics = search.searchDiagnostics;
+				Task.Delay (bookMoveDelayMillis).ContinueWith ((t) => PlayBookMove (bookMove));
+				
+			}
 		}
 
 		void StartSearch () {
@@ -72,10 +89,10 @@
 			}
 		}
 
-		/*void PlayBookMove(Move bookMove) {
+		void PlayBookMove(Move bookMove) {
 			this.move = bookMove;
 			moveFound = true;
-		}*/
+		}
 
 		void OnSearchComplete (Move move) {
 			// Cancel search timer in case search finished before timer ran out (can happen when a mate is found)
