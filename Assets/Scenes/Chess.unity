@@ -738,13 +738,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '
-
-    Depth Searched: 2
-
-    Eval: mate in 1 ply
-
-    Move: Rxh3#'
+  m_text: "\nDepth Searched: \nEval:\nMove: "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1458,7 +1452,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 690, y: 45}
+  m_AnchoredPosition: {x: 584, y: 32}
   m_SizeDelta: {x: -1735.6562, y: -1035.238}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1140990944
