@@ -94,7 +94,7 @@ namespace Chess.Game {
 		public void NewComputerVersusComputerGame () {
 			boardUI.SetPerspective (true);
 			NewGame (PlayerType.AI, PlayerType.AI);
-		}*/
+		}
 
 		void NewGame (PlayerType whitePlayerType, PlayerType blackPlayerType) {
 			gameMoves.Clear ();
